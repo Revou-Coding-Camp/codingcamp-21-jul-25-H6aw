@@ -1,89 +1,149 @@
 /* Gaya dasar untuk seluruh halaman */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+   font-family: 'Arial', sans-serif;
+   color: #eee; /* Teks jadi lebih terang untuk latar belakang gelap */
+   margin: 0;
+   background: linear-gradient(45deg, #0a0b1e, #283149, #0a0b1e);
+   background-size: 400% 400%;
+   animation: gradientAnimation 10s infinite alternate;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+   overflow: hidden; /* Menyembunyikan partikel di luar layar */
 }
 
-/* Kontainer utama aplikasi */
+@keyframes gradientAnimation {
+   0% {
+       background-position: 0% 50%;
+   }
+   50% {
+       background-position: 100% 50%;
+   }
+   100% {
+       background-position: 0% 50%;
+   }
+}
+
+/* Kontainer utama aplikasi - Efek Frosted Glass (opsional) */
 .container {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
+   background: rgba(255, 255, 255, 0.1); /* Latar belakang semi-transparan */
+   border-radius: 10px;
+   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+   backdrop-filter: blur(5px); /* Efek buram */
+   padding: 2rem;
+   width: 100%;
+   max-width: 500px;
+   z-index: 10; /* Pastikan di atas partikel */
 }
 
 h1 {
-    text-align: center;
-    color: #444;
+   text-align: center;
+   color: #f0f0f0;
+   margin-bottom: 1.5rem;
 }
 
 /* Gaya untuk formulir input */
 #todo-form {
-    display: flex;
-    gap: 0.5rem; /* Jarak antar elemen */
-    margin-bottom: 1.5rem;
+   display: flex;
+   gap: 0.75rem;
+   margin-bottom: 1.5rem;
 }
 
 #todo-form input {
-    flex-grow: 1; /* Membuat input teks memanjang */
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
+   flex-grow: 1;
+   padding: 0.75rem;
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   border-radius: 5px;
+   font-size: 1rem;
+   background-color: rgba(0, 0, 0, 0.1);
+   color: #eee;
+}
+
+#todo-form input::placeholder {
+   color: #ccc;
 }
 
 #todo-form button {
-    padding: 0.75rem 1.5rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.2s;
+   padding: 0.75rem 1.5rem;
+   background-color: #645CAA; 
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 1rem;
+   transition: background-color 0.3s ease;
 }
 
 #todo-form button:hover {
-    background-color: #0056b3;
+   background-color: #504688;
 }
 
 /* Gaya untuk daftar tugas */
 #todo-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+   list-style-type: none;
+   padding: 0;
+   margin: 0;
 }
 
 #todo-list li {
-    background: #fafafa;
-    padding: 1rem;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+   background: rgba(0, 0, 0, 0.2);
+   padding: 1rem;
+   border: 1px solid rgba(255, 255, 255, 0.1);
+   border-radius: 5px;
+   margin-bottom: 0.75rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+#todo-list li span {
+   flex-grow: 1;
+}
+
+#todo-list li em {
+   color: #ccc;
+   font-style: normal;
 }
 
 /* Tombol hapus */
 .delete-btn {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+   background-color: #e57373;
+   color: white;
+   border: none;
+   padding: 0.5rem 1rem;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+   margin-left: 1rem;
 }
 
 .delete-btn:hover {
-    background-color: #c82333;
+   background-color: #d32f2f;
+}
+
+.particle {
+   position: fixed;
+   width: 10px;
+   height: 10px;
+   background-color: rgba(255, 255, 255, 0.3);
+   border-radius: 50%;
+   pointer-events: none;
+   z-index: 1;
+   animation: float 5s infinite linear;
+}
+
+@keyframes float {
+   0% {
+       transform: translateY(0);
+       opacity: 0.8;
+   }
+   50% {
+       transform: translateY(-20px);
+       opacity: 0.4;
+   }
+   100% {
+       transform: translateY(0);
+       opacity: 0.8;
+   }
 }

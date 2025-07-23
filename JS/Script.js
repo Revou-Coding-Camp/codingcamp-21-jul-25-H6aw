@@ -59,3 +59,43 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+const body = document.body;
+const particleCount = 50;
+
+function createParticle() {
+   const particle = document.createElement('div');
+   particle.classList.add('particle');
+   const size = Math.random() * 10 + 5;
+   particle.style.width = `${size}px`;
+   particle.style.height = `${size}px`;
+   particle.style.backgroundColor = `rgba(255, 255, 255, ${Math.random() * 0.5})`;
+   particle.style.borderRadius = '50%';
+   particle.style.position = 'fixed';
+   particle.style.left = `${Math.random() * 100}vw`;
+   particle.style.top = `${Math.random() * 100}vh`;
+   particle.style.zIndex = '1';
+   particle.style.pointerEvents = 'none'; // Agar tidak menghalangi interaksi
+
+   const animationDuration = Math.random() * 3 + 2;
+   const directionX = Math.random() > 0.5 ? 1 : -1;
+   const directionY = Math.random() > 0.5 ? 1 : -1;
+
+   particle.style.animation = `float ${animationDuration}s infinite linear`;
+
+   body.appendChild(particle);
+
+   particle.addEventListener('mousemove', (e) => {
+       const xPos = e.clientX / window.innerWidth;
+       const yPos = e.clientY / window.innerHeight;
+       particle.style.transform = `translate(${xPos * 20 - 10}px, ${yPos * 20 - 10}px)`;
+   });
+
+   particle.addEventListener('mouseout', () => {
+       particle.style.transform = `translate(0, 0)`;
+   });
+}
+
+for (let i = 0; i < particleCount; i++) {
+   createParticle();
+}
